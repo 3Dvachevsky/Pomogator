@@ -1,0 +1,49 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dv22ue6expd80"
+path="res://.godot/imported/barrel.glb-3a27817ebc5de9e8f2d08c9abb074e7f.scn"
+
+[deps]
+
+source_file="res://barrel.glb"
+dest_files=["res://.godot/imported/barrel.glb-3a27817ebc5de9e8f2d08c9abb074e7f.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:barrel_lod_0": {
+"mesh_instance/visibility_range_begin": 0.0,
+"mesh_instance/visibility_range_end": 15.0
+},
+"PATH:barrel_lod_1": {
+"mesh_instance/visibility_range_begin": 15.0,
+"mesh_instance/visibility_range_end": 25.0
+},
+"PATH:barrel_lod_2": {
+"mesh_instance/visibility_range_begin": 25.0,
+"mesh_instance/visibility_range_end": 55.0
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vmwux1lcjnph"]
+
+[ext_resource type="PackedScene" uid="uid://dv22ue6expd80" path="res://barrel.glb" id="1_x0kyy"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="barrel" parent="." instance=ExtResource("1_x0kyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.232714, 0, 0.0778692)

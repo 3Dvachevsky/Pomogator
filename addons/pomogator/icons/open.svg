@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <symbol height="64px" id="svg_8" version="1.1" viewBox="0 0 512 512" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <g id="svg_7" stroke-width="0"/>
+   <g id="svg_6" stroke-linecap="round" stroke-linejoin="round"/>
+   <g id="svg_5">
+    <style type="text/css">.st0{fill:#ffffff;}</style>
+    <g>
+     <path class="st0" d="m96,0l0,416l416,0l0,-416l-416,0zm376,376l-336,0l0,-264l336,0l0,264z"/>
+     <polygon class="st0" points="40,472 40,296 40,136 40,96 0,96 0,512 416,512 416,472 376,472 "/>
+    </g>
+   </g>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use id="svg_12" transform="matrix(0.243887, 0, 0, 0.243887, 0.0289575, 0.0289575)" x="0.77" xlink:href="#svg_8" y="0.77"/>
+ </g>
+</svg>

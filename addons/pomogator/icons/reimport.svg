@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <symbol height="64px" id="svg_13" version="1.1" viewBox="0 0 512 512" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <g id="svg_11" stroke-width="0"/>
+   <g id="svg_10" stroke-linecap="round" stroke-linejoin="round"/>
+   <g id="svg_9">
+    <style type="text/css">.st0{fill:#ffffff;}</style>
+    <g>
+     <path class="st0" d="m243.59,309.36c3.27,4.32 7.68,6.69 12.41,6.69c4.73,0 9.14,-2.37 12.41,-6.68l89.59,-118.1c3.35,-4.41 4.28,-8.69 2.61,-12.04c-1.66,-3.35 -5.63,-5.2 -11.16,-5.2l-34.31,0c-9.29,0 -16.84,-7.55 -16.84,-16.84l0,-97.41c0,-11.04 -8.99,-20.03 -20.03,-20.03l-44.54,0c-11.04,0 -20.03,8.99 -20.03,20.03l0,97.41c0,9.29 -7.55,16.84 -16.84,16.84l-34.3,0c-5.54,0 -9.51,1.85 -11.17,5.2c-1.67,3.35 -0.74,7.63 2.61,12.05l89.59,118.08z"/>
+     <path class="st0" d="m445.22,294.16l0,111.3l-378.44,0l0,-111.3l-66.78,0l0,152.65c0,14.03 11.41,25.44 25.44,25.44l461.12,0c14.03,0 25.44,-11.41 25.44,-25.44l0,-152.65l-66.78,0z"/>
+    </g>
+   </g>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use id="svg_14" transform="matrix(0.241279, 0, 0, 0.241279, 1.66164, 0.435607)" x="-5.77" xlink:href="#svg_13" y="-0.91"/>
+ </g>
+</svg>
