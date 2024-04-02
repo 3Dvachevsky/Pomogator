@@ -13,21 +13,22 @@ var file_path: String
 var lod_distances: Array[float]
 var generate_lod: bool
 var apply_distance: bool
+var scene_root: String
 
-@onready var scene_root = $VBoxContainer/ReimportSettings/VBoxContainer/HBoxContainer/VBoxContainer/SceneRoot
+
 
 
 func _ready():
 	reimport_button.pressed.connect(_reimport_button)
 	get_setting_button.pressed.connect(_get_setting_button)
 	reset_button.pressed.connect(_reset_button)
-	print(scene_root.text)
 	pass
 
-func _update_var(distances: Array[float], lod: bool, dist: bool):
+func _update_var(distances: Array[float], lod: bool, dist: bool, root: String):
 	lod_distances = distances
 	generate_lod = lod
 	apply_distance = dist
+	scene_root = root
 
 func _reimport_button():
 	var file: PackedScene = load(file_path)
@@ -64,6 +65,7 @@ func _reimport_button():
 	
 	config.set_value("params", "_subresources", subresources)
 	config.set_value("params", "meshes/generate_lods", generate_lod)
+	config.set_value("params", "nodes/root_type", scene_root)
 	config.save(file_path + ".import")
 	
 	EditorInterface.get_resource_filesystem().reimport_files([file_path])

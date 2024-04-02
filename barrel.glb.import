@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/barrel.glb-3a27817ebc5de9e8f2d08c9abb074e7f.s
 
 [params]
 
-nodes/root_type="Node3D"
+nodes/root_type="RigidBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -33,15 +33,15 @@ _subresources={
 "nodes": {
 "PATH:barrel_lod_0": {
 "mesh_instance/visibility_range_begin": 0.0,
-"mesh_instance/visibility_range_end": 15.0
+"mesh_instance/visibility_range_end": 10.0
 },
 "PATH:barrel_lod_1": {
-"mesh_instance/visibility_range_begin": 15.0,
-"mesh_instance/visibility_range_end": 25.0
+"mesh_instance/visibility_range_begin": 10.0,
+"mesh_instance/visibility_range_end": 20.0
 },
 "PATH:barrel_lod_2": {
-"mesh_instance/visibility_range_begin": 25.0,
-"mesh_instance/visibility_range_end": 55.0
+"mesh_instance/visibility_range_begin": 20.0,
+"mesh_instance/visibility_range_end": 50.0
 }
 }
 }
