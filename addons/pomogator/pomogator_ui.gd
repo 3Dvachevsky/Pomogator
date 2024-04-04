@@ -13,10 +13,8 @@ var file_path: String
 var lod_distances: Array[float]
 var generate_lod: bool
 var apply_distance: bool
+var collision: bool
 var scene_root: String
-
-
-
 
 func _ready():
 	reimport_button.pressed.connect(_reimport_button)
@@ -24,11 +22,12 @@ func _ready():
 	reset_button.pressed.connect(_reset_button)
 	pass
 
-func _update_var(distances: Array[float], lod: bool, dist: bool, root: String):
+func _update_var(distances: Array[float], lod: bool, dist: bool, coll: bool, root: String):
 	lod_distances = distances
 	generate_lod = lod
 	apply_distance = dist
 	scene_root = root
+	collision = coll
 
 func _reimport_button():
 	var file: PackedScene = load(file_path)
@@ -41,10 +40,15 @@ func _reimport_button():
 	#if subresources.has("node"):
 		#subresources_nodes = subresources["node"].duplicate()
 	
+	if collision:
+		config.set_value("params", "import_script/path", "res://addons/pomogator/post_import.gd")
+	else:
+		config.set_value("params", "import_script/path", "")
+	
 	if apply_distance:
 		var begin: float
 		var end: float
-		for child: MeshInstance3D in scene.get_children():
+		for child in scene.get_children():
 			if child.name.contains("lod_0"):
 				begin = 0.0
 				end = lod_distances[0]
@@ -55,7 +59,8 @@ func _reimport_button():
 				begin = lod_distances[1]
 				end = lod_distances[2]
 				
-			subresources_nodes["PATH:" + child.name] = {"mesh_instance/visibility_range_begin": begin, "mesh_instance/visibility_range_end": end}
+			if child is MeshInstance3D:
+				subresources_nodes["PATH:" + child.name] = {"mesh_instance/visibility_range_begin": begin, "mesh_instance/visibility_range_end": end}
 			
 	if !subresources.has("nodes"):
 		subresources["nodes"] = {}
@@ -72,6 +77,7 @@ func _reimport_button():
 	pass
 
 func _get_setting_button():
+	return
 	var file: PackedScene = load(file_path)
 	var scene: Node3D = file.instantiate()
 	var config = ConfigFile.new()

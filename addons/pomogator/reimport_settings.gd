@@ -10,6 +10,7 @@ var buttons_distances: Array[SpinBox]
 
 @onready var generate_lod = $VBoxContainer/HBoxContainer/VBoxContainer/GenerateLod
 @onready var apply_lod_distances = $VBoxContainer/HBoxContainer/VBoxContainer/ApplyLodDistances
+@onready var use_convex_collision = $VBoxContainer/HBoxContainer/VBoxContainer/UseConvexCollision
 
 @onready var pomogator = $"../.."
 
@@ -19,15 +20,16 @@ func _ready():
 	distance_lod_2.value_changed.connect(_update)
 	generate_lod.toggled.connect(_update)
 	apply_lod_distances.toggled.connect(_update)
+	use_convex_collision.toggled.connect(_update)
 	scene_root.item_selected.connect(_update)
 	buttons_distances = [distance_lod_0, distance_lod_1, distance_lod_2]
 	_update(0)
 
 func _update(value):
 	var lod_distances: Array[float] = [distance_lod_0.value, distance_lod_1.value, distance_lod_2.value]
-	pomogator._update_var(lod_distances, generate_lod.button_pressed, apply_lod_distances.button_pressed, scene_root.text)
+	pomogator._update_var(lod_distances, generate_lod.button_pressed, apply_lod_distances.button_pressed, use_convex_collision.button_pressed, scene_root.text)
 
-func _get_setting(distances: Array[float], lod: bool, dist: bool):
+func _get_setting(distances: Array[float], lod: bool, dist: bool, coll: bool):
 	for i in buttons_distances.size():
 		buttons_distances[i].value = distances[i]
 	generate_lod.button_pressed = lod

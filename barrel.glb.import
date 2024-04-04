@@ -28,7 +28,7 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
-import_script/path=""
+import_script/path="res://addons/pomogator/post_import.gd"
 _subresources={
 "nodes": {
 "PATH:barrel_lod_0": {

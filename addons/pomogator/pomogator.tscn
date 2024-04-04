@@ -116,7 +116,13 @@ text = "Generate LODs"
 
 [node name="ApplyLodDistances" type="CheckButton" parent="VBoxContainer/ReimportSettings/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Apply LODs Distances"
+
+[node name="UseConvexCollision" type="CheckButton" parent="VBoxContainer/ReimportSettings/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Use Convex Collision"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ReimportSettings/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -179,7 +185,7 @@ flat = true
 [node name="GetSettingButton" type="Button" parent="VBoxContainer/BotPanel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Get Settings
+text = "Get Settings(WIP)
 "
 icon = ExtResource("4_nciii")
 flat = true
@@ -187,7 +193,7 @@ flat = true
 [node name="ResetButton" type="Button" parent="VBoxContainer/BotPanel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Reset
+text = "Reset(WIP)
 "
 icon = ExtResource("4_nciii")
 flat = true
