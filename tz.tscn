@@ -1,35 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://clhn0i1uppo5f"]
+[gd_scene load_steps=3 format=3 uid="uid://c1bp30nkyfr1d"]
 
-[ext_resource type="Script" path="res://addons/pomogator/pomogator_ui.gd" id="1_lytwj"]
-[ext_resource type="Texture2D" uid="uid://blbecdwhacdh2" path="res://addons/pomogator_old/icons/apply.svg" id="1_sfp6u"]
-[ext_resource type="Texture2D" uid="uid://c682sxbbqmjk3" path="res://addons/pomogator_old/icons/reimport.svg" id="2_q0444"]
+[ext_resource type="Texture2D" uid="uid://blbecdwhacdh2" path="res://addons/pomogator_old/icons/apply.svg" id="1_35qn2"]
+[ext_resource type="Texture2D" uid="uid://c682sxbbqmjk3" path="res://addons/pomogator_old/icons/reimport.svg" id="2_4xt25"]
 
-[node name="Pomogator" type="Control" node_paths=PackedStringArray("select_button", "file_path", "scene_root", "generate_lod", "custom_lod", "checkbox_lod0", "suffix_lod0", "spinbox_lod0", "checkbox_lod1", "suffix_lod1", "spinbox_lod1", "checkbox_lod2", "suffix_lod2", "spinbox_lod2", "shadow_lod", "suffix_shadow_lod", "spinbox_shadowlod", "reimport")]
+[node name="Pomogator" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lytwj")
-select_button = NodePath("RootContainer/ManeContainer/Select File/PanelContainer/SelectButton")
-file_path = NodePath("RootContainer/ManeContainer/Select File/PanelContainer/FilePath")
-scene_root = NodePath("RootContainer/ManeContainer/Settings/TabContainer/Mesh/VBoxContainer/RootType/SceneRoot")
-generate_lod = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/GenerateLod")
-custom_lod = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/CustomLod")
-checkbox_lod0 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0/CheckBoxLod0")
-suffix_lod0 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0/SuffixLod0")
-spinbox_lod0 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0/DistanceLod0")
-checkbox_lod1 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1/CheckBoxLod1")
-suffix_lod1 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1/SuffixLod1")
-spinbox_lod1 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1/DistanceLod1")
-checkbox_lod2 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2/CheckBoxLod2")
-suffix_lod2 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2/SuffixLod2")
-spinbox_lod2 = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2/DistanceLod2")
-shadow_lod = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod/ShadowLod")
-suffix_shadow_lod = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod/shadowLod/SuffixShadowLod")
-spinbox_shadowlod = NodePath("RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod/shadowLod/DistanceShadowLod")
-reimport = NodePath("RootContainer/ManeContainer/BotomPanel/HBoxContainer/Reimport")
 
 [node name="RootContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -78,7 +58,7 @@ drag_and_drop_selection_enabled = false
 [node name="SelectButton" type="Button" parent="RootContainer/ManeContainer/Select File/PanelContainer"]
 layout_mode = 2
 text = "Select"
-icon = ExtResource("1_sfp6u")
+icon = ExtResource("1_35qn2")
 
 [node name="Settings" type="VBoxContainer" parent="RootContainer/ManeContainer"]
 layout_mode = 2
@@ -99,10 +79,9 @@ size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="RootContainer/ManeContainer/Settings"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Mesh" type="PanelContainer" parent="RootContainer/ManeContainer/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -127,6 +106,7 @@ popup/item_2/text = "RigidBody3D"
 popup/item_2/id = 2
 
 [node name="LOD" type="PanelContainer" parent="RootContainer/ManeContainer/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -151,14 +131,9 @@ text = "Suffix"
 [node name="Lod_0" type="HBoxContainer" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix"]
 layout_mode = 2
 
-[node name="CheckBoxLod0" type="CheckBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0"]
-layout_mode = 2
-button_pressed = true
-
 [node name="SuffixLod0" type="LineEdit" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "_lod_0"
 placeholder_text = "_lod_0"
 
 [node name="DistanceLod0" type="SpinBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_0"]
@@ -170,14 +145,9 @@ suffix = "m"
 [node name="Lod_1" type="HBoxContainer" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix"]
 layout_mode = 2
 
-[node name="CheckBoxLod1" type="CheckBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1"]
-layout_mode = 2
-button_pressed = true
-
 [node name="SuffixLod1" type="LineEdit" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "_lod_1"
 placeholder_text = "_lod_1"
 
 [node name="DistanceLod1" type="SpinBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_1"]
@@ -186,28 +156,9 @@ max_value = 1e+06
 value = 50.0
 suffix = "m"
 
-[node name="Lod_2" type="HBoxContainer" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix"]
-layout_mode = 2
-
-[node name="CheckBoxLod2" type="CheckBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2"]
-layout_mode = 2
-button_pressed = true
-
-[node name="SuffixLod2" type="LineEdit" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "_lod_2"
-placeholder_text = "_lod_2"
-
-[node name="DistanceLod2" type="SpinBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix/Lod_2"]
-layout_mode = 2
-max_value = 1e+06
-value = 100.0
-suffix = "m"
-
 [node name="Button" type="Button" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/Suffix"]
 layout_mode = 2
-text = "Add LOD (WIP)"
+text = "Add LOD"
 
 [node name="ShadowLod" type="VBoxContainer" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer"]
 layout_mode = 2
@@ -218,7 +169,7 @@ text = "Shadow LOD"
 
 [node name="ShadowLod" type="CheckButton" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod"]
 layout_mode = 2
-text = "Use Custom Shadow LOD"
+text = "Use Shadow LOD"
 
 [node name="shadowLod" type="HBoxContainer" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod"]
 layout_mode = 2
@@ -226,7 +177,6 @@ layout_mode = 2
 [node name="SuffixShadowLod" type="LineEdit" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod/shadowLod"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "_shadow_lod"
 placeholder_text = "_shadow_lod"
 
 [node name="DistanceShadowLod" type="SpinBox" parent="RootContainer/ManeContainer/Settings/TabContainer/LOD/VBoxContainer/ShadowLod/shadowLod"]
@@ -246,4 +196,4 @@ size_flags_horizontal = 4
 [node name="Reimport" type="Button" parent="RootContainer/ManeContainer/BotomPanel/HBoxContainer"]
 layout_mode = 2
 text = "Reimport"
-icon = ExtResource("2_q0444")
+icon = ExtResource("2_4xt25")

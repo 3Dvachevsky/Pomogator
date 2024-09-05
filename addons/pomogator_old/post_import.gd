@@ -19,4 +19,3 @@ func iterate(scene: Node3D):
 				child.free()
 				col.name = name
 	
-

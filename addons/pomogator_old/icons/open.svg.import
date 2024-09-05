@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c682sxbbqmjk3"
-path.s3tc="res://.godot/imported/reimport.svg-b5e3d256aba0943c75487ff80d61105f.s3tc.ctex"
+uid="uid://dhx1frieqjvuh"
+path.s3tc="res://.godot/imported/open.svg-5a2fc354d0a241cb4061f6d0911deec2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/pomogator/icons/reimport.svg"
-dest_files=["res://.godot/imported/reimport.svg-b5e3d256aba0943c75487ff80d61105f.s3tc.ctex"]
+source_file="res://addons/pomogator_old/icons/open.svg"
+dest_files=["res://.godot/imported/open.svg-5a2fc354d0a241cb4061f6d0911deec2.s3tc.ctex"]
 
 [params]
 

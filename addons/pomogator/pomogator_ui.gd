@@ -1,67 +1,106 @@
 @tool
-extends PanelContainer
-#---Other-Scripts---#
-@onready var select_file = $VBoxContainer/SelectFile
-@onready var reimport_settings = $VBoxContainer/ReimportSettings
+extends Control
 
-#---Bot-Pannel-Buttons---#
-@onready var reimport_button = $VBoxContainer/BotPanel/HBoxContainer/ReimportButton
-@onready var get_setting_button = $VBoxContainer/BotPanel/HBoxContainer/GetSettingButton
-@onready var reset_button = $VBoxContainer/BotPanel/HBoxContainer/ResetButton
-#---VARE---#
-var file_path: String
-var lod_distances: Array[float]
-var generate_lod: bool
-var apply_distance: bool
-var collision: bool
-var scene_root: String
+@export var select_button: Button
+@export var file_path: LineEdit
+@export var scene_root: OptionButton
+@export var generate_lod: CheckButton
+
+@export var custom_lod: CheckButton
+@export var checkbox_lod0: CheckBox
+@export var suffix_lod0: LineEdit
+@export var spinbox_lod0: SpinBox
+@export var checkbox_lod1: CheckBox
+@export var suffix_lod1: LineEdit
+@export var spinbox_lod1: SpinBox
+@export var checkbox_lod2: CheckBox
+@export var suffix_lod2: LineEdit
+@export var spinbox_lod2: SpinBox
+
+@export var shadow_lod: CheckButton
+@export var suffix_shadow_lod: LineEdit
+@export var spinbox_shadowlod: SpinBox
+
+@export var reimport: Button
+
+var path: String
 
 func _ready():
-	reimport_button.pressed.connect(_reimport_button)
-	get_setting_button.pressed.connect(_get_setting_button)
-	reset_button.pressed.connect(_reset_button)
-	pass
+	select_button.pressed.connect(_select_file)
+	generate_lod.pressed.connect(_generate_lod)
+	custom_lod.pressed.connect(_custom_lod)
+	reimport.pressed.connect(_reimport)
 
-func _update_var(distances: Array[float], lod: bool, dist: bool, coll: bool, root: String):
-	lod_distances = distances
-	generate_lod = lod
-	apply_distance = dist
-	scene_root = root
-	collision = coll
-
-func _reimport_button():
-	var file: PackedScene = load(file_path)
+func _select_file():
+	path = EditorInterface.get_current_path()
+	if path.ends_with(".glb"):
+		file_path.text = path
+	else:
+		file_path.text = ""
+	_get_val()
+	
+func _get_val():
+	var suff: Array[String]
+	var dist: Array[SpinBox]
+	
+	suff.append(suffix_lod0.text)
+	suff.append(suffix_lod1.text)
+	suff.append(suffix_lod2.text)
+	
+	dist.append(spinbox_lod0)
+	dist.append(spinbox_lod1)
+	dist.append(spinbox_lod2)
+	
+	var file: PackedScene = load(path)
 	var scene: Node3D = file.instantiate()
 	var config = ConfigFile.new()
-	config.load(file_path + ".import")
+	config.load(path + ".import")
+	if config.get_value("params", "_subresources") != {}:
+		var dic: Dictionary = config.get_value("params", "_subresources").get("nodes")
+		for child in scene.get_children():
+			for i in suff.size():
+				if child.name.contains(suff[i]):
+					dist[i].value = dic.get("PATH:" + child.name).get("mesh_instance/visibility_range_end")
+
+func _generate_lod():
+	if generate_lod.button_pressed:
+		custom_lod.button_pressed = false
+
+func _custom_lod():
+	if custom_lod.button_pressed:
+		generate_lod.button_pressed = false
+
+func _reimport():
+	var file: PackedScene = load(path)
+	var scene: Node3D = file.instantiate()
+	var config = ConfigFile.new()
+	config.load(path + ".import")
 	var subresources: Dictionary = config.get_value("params", "_subresources")
 	var subresources_nodes: Dictionary
 	
-	#if subresources.has("node"):
-		#subresources_nodes = subresources["node"].duplicate()
-	
-	if collision:
-		config.set_value("params", "import_script/path", "res://addons/pomogator/post_import.gd")
-	else:
-		config.set_value("params", "import_script/path", "")
-	
-	if apply_distance:
+	if custom_lod.button_pressed:
 		var begin: float
 		var end: float
 		for child in scene.get_children():
-			if child.name.contains("lod_0"):
+			if child.name.contains(suffix_lod0.text) and checkbox_lod0.button_pressed:
 				begin = 0.0
-				end = lod_distances[0]
-			elif child.name.contains("lod_1"):
-				begin = lod_distances[0]
-				end = lod_distances[1]
-			elif child.name.contains("lod_2"):
-				begin = lod_distances[1]
-				end = lod_distances[2]
-				
+				end = spinbox_lod0.value
+			elif child.name.contains(suffix_lod1.text) and checkbox_lod1.button_pressed:
+				begin = spinbox_lod0.value
+				end = spinbox_lod1.value
+			elif child.name.contains(suffix_lod2.text) and checkbox_lod2.button_pressed:
+				begin = spinbox_lod1.value
+				end = spinbox_lod2.value
+			
 			if child is MeshInstance3D:
 				subresources_nodes["PATH:" + child.name] = {"mesh_instance/visibility_range_begin": begin, "mesh_instance/visibility_range_end": end}
 			
+			if shadow_lod.button_pressed:
+				if child.name.contains(suffix_shadow_lod.text):
+					subresources_nodes["PATH:" + child.name] = {"mesh_instance/visibility_range_begin": 0.0, "mesh_instance/visibility_range_end": spinbox_shadowlod.value}
+				else:
+					subresources_nodes["PATH:" + child.name].merge({"mesh_instance/cast_shadow": 0})
+	
 	if !subresources.has("nodes"):
 		subresources["nodes"] = {}
 		
@@ -69,39 +108,8 @@ func _reimport_button():
 	subresources["nodes"] = subresources_nodes
 	
 	config.set_value("params", "_subresources", subresources)
-	config.set_value("params", "meshes/generate_lods", generate_lod)
-	config.set_value("params", "nodes/root_type", scene_root)
-	config.save(file_path + ".import")
+	config.set_value("params", "meshes/generate_lods", generate_lod.button_pressed)
+	config.set_value("params", "nodes/root_type", scene_root.text)
+	config.save(path + ".import")
 	
-	EditorInterface.get_resource_filesystem().reimport_files([file_path])
-	pass
-
-func _get_setting_button():
-	return
-	var file: PackedScene = load(file_path)
-	var scene: Node3D = file.instantiate()
-	var config = ConfigFile.new()
-	config.load(file_path + ".import")
-	
-	for child in scene.get_children():
-		#lod_distances[0] = child.get_visibility_range_begin
-		pass
-	
-	
-	generate_lod = config.get_value("params", "meshes/generate_lods")
-	
-	reimport_settings._get_setting(lod_distances, generate_lod, apply_distance)
-	pass
-
-func _reset_button():
-	select_file._reset()
-	reimport_settings._reset()
-
-func _process(delta):
-	pass
-
-func _set_path(path: String):
-	file_path = path
-
-
-
+	EditorInterface.get_resource_filesystem().reimport_files([path])
